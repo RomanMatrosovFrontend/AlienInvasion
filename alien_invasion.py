@@ -77,6 +77,9 @@ class AlienInvasion():
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        
+        # Проверка попаданий в пришельцев
+        collisions = pygame.sprite.groupcollide(self.aliens, self.bullets, True, True)
     
     def _update_aliens(self):
         """Обнеовляет  всех ришельцев"""
