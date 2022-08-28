@@ -10,6 +10,8 @@ class Settings():
 
         # Скорость корабля
         self.ship_speed = 1.5
+        # Стартовое кол-во жизней корабля
+        self.ship_limit = 3
 
         # Параметры снаряда
         self.bullet_speed = 1
@@ -20,6 +22,6 @@ class Settings():
 
         # Параметры пришельца
         self.alien_speed = 0.1
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 80
         # Направление (1 - вправо, -1 - влево)
         self.fleet_direction = 1
