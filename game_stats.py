@@ -9,4 +9,4 @@ class GameStats():
         """Инициализирует статистику, меняющуюся в ходе игры"""
         self.ships_left = self.settings.ship_limit
 
-        self.game_active = True
+        self.game_active = False
