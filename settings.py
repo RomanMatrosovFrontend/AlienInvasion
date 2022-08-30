@@ -23,6 +23,9 @@ class Settings():
         # Темп ускорения игры
         self.speedup_scale = 1.1
 
+        # Очки за уничтожение пришельца
+        self.alien_points = 50
+
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
