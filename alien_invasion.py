@@ -70,6 +70,9 @@ class AlienInvasion():
             self.stats.game_active = True
 
             self.sb.prep_score()
+            self.sb.prep_level()
+
+            self.sb.prep_ships()
 
             self.aliens.empty()
             self.bullets.empty()
@@ -119,20 +122,27 @@ class AlienInvasion():
         collisions = pygame.sprite.groupcollide(self.aliens, self.bullets, True, True)
 
         if collisions:
-            self.stats.score += self.settings.alien_points
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+
             self.sb.prep_score()
+            self.sb.check_high_score()
 
         if  not self.aliens:
             # Уничтожение существующих снарядов и создание нового флота
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            self.stats.level += 1
+            self.sb.prep_level()
     
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем"""
         if(self.stats.ships_left > 0):
             # Уменьшить кол-во жизней
             self.stats.ships_left -= 1
+
+            self.sb.prep_ships()
 
             # Очистка списков пришельцев и снарядов
             self.aliens.empty()
@@ -148,7 +158,7 @@ class AlienInvasion():
             pygame.mouse.set_visible(True)
 
     def _update_aliens(self):
-        """Обновляет  всех ришельцев"""
+        """Обновляет  всех пришельцев"""
         self._check_fleet_edges()
         self.aliens.update()
 
